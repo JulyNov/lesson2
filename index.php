@@ -13,18 +13,19 @@ $StringArr = [
     'Пять Пять Пять Пять Пять',
 ];
 
-function Paragraf(array $stroki, bool $flag = false) {
+function Paragraf(array $stroki, bool $flag = false)
+{
     if ($flag === true) {
-        return   implode(' ', $stroki);
+        return implode(' ', $stroki);
     }
-    foreach ($stroki as $value){
+    foreach ($stroki as $value) {
         echo '<p>' . $value . '</p>';
     }
     return null;
 }
 
 echo Paragraf($StringArr);
-echo Paragraf($StringArr,true);
+echo Paragraf($StringArr, true);
 
 echo '<hr>';
 //Задание #2
@@ -90,7 +91,7 @@ echo '<hr>';
 Пример вызова: calcEverything(‘+’, 1, 2, 3, 5.2);
 Результат: 1 + 2 + 3 + 5.2 = 11.2*/
 
-function calcEverything ($operation)
+function calcEverything($operation)
 {
     $sum = func_get_arg(1);
     $string = $sum;
@@ -137,7 +138,7 @@ echo '<hr>';
  *  В остальных случаях выдавать корректную ошибку.
  */
 
-function PifagorTable ($x,$y)
+function PifagorTable($x, $y)
 {
     if (!is_int($x) || !is_int($y)) {
         throw new ErrorException('Неккоректное число');
@@ -158,8 +159,38 @@ function PifagorTable ($x,$y)
 
 
 try {
-    PifagorTable(8,5);
+    PifagorTable(8, 5);
 } catch (Exception $exception) {
     echo $exception->getMessage() . '<br>';
 }
 
+
+///*Задание #5
+//
+//Написать две функции.
+//Функция №1 принимает 1 строковый параметр и возвращает true, если строка является палиндромом*, false в противном случае. Пробелы и регистр не должны учитываться.
+//Функция №2 выводит сообщение в котором на русском языке оговаривается результат из функции №1*/
+
+$str = 'Мат и тут и там';
+
+function Palindrom($str)
+{
+    $str = strtolower($str);
+    $str = preg_replace('/\W/', '', $str);
+    $strR = strrev($str);
+    return $str === $strR;
+}
+
+$flag = Palindrom($str);
+
+function PalindromEcho(bool $flag, $str)
+{
+    if ($flag === true) {
+        echo $str . '<br> Это полиндром <hr>';
+
+    } else {
+        echo $str . '<br> Это не похоже на полиндром <hr>';
+    }
+}
+
+PalindromEcho($flag, $str);
