@@ -129,3 +129,37 @@ try {
 echo '<hr>';
 
 
+/*
+ * Задание #4
+ *
+ * Функция должна принимать два параметра – целые числа.
+ * Если в функцию передали 2 целых числа, то функция должна отобразить таблицу умножения размером со значения параметров, переданных в функцию. (Например если передано 8 и 8, то нарисовать от 1х1 до 8х8). Таблица должна быть выполнена с использованием тега <table>
+ *  В остальных случаях выдавать корректную ошибку.
+ */
+
+function PifagorTable ($x,$y)
+{
+    if (!is_int($x) || !is_int($y)) {
+        throw new ErrorException('Неккоректное число');
+    }
+
+    echo 'Таблица умножения<br>' . "\n";
+    echo '<table cellspacing="0" border="1" cellpadding="5">' . PHP_EOL;
+    for ($i = 1; $i <= $x; $i++) {
+        echo "\t<tr>\n";
+        for ($j = 1; $j <= $y; $j++) {
+            $sum = $i * $j;
+            echo "\t\t<td>$sum</td>\n";
+        }
+        echo "\t</tr>\n";
+    }
+    echo '</table><hr>' . PHP_EOL;
+}
+
+
+try {
+    PifagorTable(8,5);
+} catch (Exception $exception) {
+    echo $exception->getMessage() . '<br>';
+}
+
