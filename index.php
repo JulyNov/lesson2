@@ -93,8 +93,10 @@ echo '<hr>';
 function calcEverything ($operation)
 {
     $sum = func_get_arg(1);
+    $string = $sum;
     for ($i = 2, $i_max = func_num_args(); $i < $i_max; $i++) {
         $value = func_get_arg($i);
+        $string .= ' ' . $operation . ' ' . $value;
         if (!is_numeric($value)) {
             throw new ErrorException('Неккоректное число');
         }
@@ -115,8 +117,15 @@ function calcEverything ($operation)
                 throw new ErrorException('Неверная арифметическая операция');
         }
 
-        return $sum;
     }
+    echo $string . ' = ' . $sum;
 }
 
-echo calcEverything('+', 2, 3, 4.5);
+try {
+    calcEverything('+', 2, 3, 4.5);
+} catch (Exception $exception) {
+    echo $exception->getMessage() . '<br>';
+}
+echo '<hr>';
+
+
