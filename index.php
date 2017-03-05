@@ -42,36 +42,36 @@ function Calc(array $numbers, $operation)
 {
 
     echo implode($operation, $numbers) . '=';
-    $summ = $numbers[0];
+    $sum = $numbers[0];
 
     $i = 0;
     foreach ($numbers as $value) {
         $i++;
+        if (!is_numeric($value)) {
+            throw new ErrorException('Неккоректное число');
+        }
         if ($i === 1) {
             continue;
         }
-        if (!ctype_digit((string)$value)) {
-            throw new ErrorException('Неккоректное число');
-        }
         switch ($operation) {
             case '+':
-                $summ += $value;
+                $sum += $value;
                 break;
             case '-':
-                $summ -= $value;
+                $sum -= $value;
                 break;
             case '*':
-                $summ *= $value;
+                $sum *= $value;
                 break;
             case '/':
-                $summ /= $value;
+                $sum /= $value;
                 break;
             default:
                 throw new ErrorException('Неверная арифметическая операция');
 
         }
     }
-    echo $summ;
+    echo $sum;
 }
 
 
@@ -80,7 +80,7 @@ try {
 } catch (Exception $exception) {
     echo $exception->getMessage() . '<br>';
 }
-
+echo '<hr>';
 /*Задание #3
 
 Функция должна принимать переменное число аргументов.
@@ -89,3 +89,34 @@ try {
 
 Пример вызова: calcEverything(‘+’, 1, 2, 3, 5.2);
 Результат: 1 + 2 + 3 + 5.2 = 11.2*/
+
+function calcEverything ($operation)
+{
+    $sum = func_get_arg(1);
+    for ($i = 2, $i_max = func_num_args(); $i < $i_max; $i++) {
+        $value = func_get_arg($i);
+        if (!is_numeric($value)) {
+            throw new ErrorException('Неккоректное число');
+        }
+        switch ($operation) {
+            case '+':
+                $sum += $value;
+                break;
+            case '-':
+                $sum -= $value;
+                break;
+            case '*':
+                $sum *= $value;
+                break;
+            case '/':
+                $sum /= $value;
+                break;
+            default:
+                throw new ErrorException('Неверная арифметическая операция');
+        }
+
+        return $sum;
+    }
+}
+
+echo calcEverything('+', 2, 3, 4.5);
