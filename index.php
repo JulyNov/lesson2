@@ -221,7 +221,7 @@ echo str_replace('Две', $count, $Limonad) . '<hr>';
 //Если в переданной в функцию строке есть “:)”, то нарисовать смайл в ASCII и не выдавать сообщение из пункта №3. Смайл должен храниться в отдельной функции
 //
 
-$RX = 'RX packets:950381 errors:0 dropped:0 overruns:0 frame:0. :)';
+$RX = 'RX packets:1001 errors:0 dropped:0 overruns:0 frame:0.';
 
 function Packets ($RX){
     if (preg_match('/:\\)/', $RX, $match)){
@@ -230,8 +230,8 @@ function Packets ($RX){
     }
 
     preg_match('/packets:(\d+)/', $RX, $match);
-    if ($match > 1000){
-        echo 'Сеть есть <hr>';
+      if ($match[1] > 1000){
+        echo   'Сеть есть <hr>';
     }
     else
         echo 'Сети нет';
