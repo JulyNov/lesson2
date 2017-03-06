@@ -221,7 +221,7 @@ echo str_replace('Две', $count, $Limonad) . '<hr>';
 //Если в переданной в функцию строке есть “:)”, то нарисовать смайл в ASCII и не выдавать сообщение из пункта №3. Смайл должен храниться в отдельной функции
 //
 
-$RX = 'RX packets:93048 errors:0 dropped:0 overruns:0 frame:).';
+$RX = 'RX packets:93048 errors:0 dropped:0 overruns:0 frame:.';
 
 function Packets ($RX){
     if (preg_match('/:\\)/', $RX, $match)){
@@ -253,3 +253,24 @@ END;
 }
 
 Packets($RX);
+
+
+//Задание #9 (выполняется после вебинара “ВСТРОЕННЫЕ ВОЗМОЖНОСТИ ЯЗЫКА”)
+//
+//Создайте средствами ОС файл test.txt и поместите в него текст “Hello, world”
+//Напишите функцию, которая будет принимать имя файла, открывать файл и выводить содержимое на экран.
+
+$filename = 'test.txt';
+function FilePrint ($filename){
+    echo file_get_contents($filename) . '<hr>';
+
+}
+
+FilePrint($filename);
+
+
+//Задание #10 (выполняется после вебинара “ВСТРОЕННЫЕ ВОЗМОЖНОСТИ ЯЗЫКА”)
+//
+//Создайте файл anothertest.txt средствами PHP. Поместите в него текст - “Hello again!”
+
+
