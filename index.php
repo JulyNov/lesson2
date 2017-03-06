@@ -221,7 +221,7 @@ echo str_replace('Две', $count, $Limonad) . '<hr>';
 //Если в переданной в функцию строке есть “:)”, то нарисовать смайл в ASCII и не выдавать сообщение из пункта №3. Смайл должен храниться в отдельной функции
 //
 
-$RX = 'RX packets:1001 errors:0 dropped:0 overruns:0 frame:0.';
+$RX = 'RX packets:93048 errors:0 dropped:0 overruns:0 frame:).';
 
 function Packets ($RX){
     if (preg_match('/:\\)/', $RX, $match)){
@@ -238,7 +238,17 @@ function Packets ($RX){
 }
 
 function Smail (){
-    echo '&#128513; <hr>';
+    $smile = <<< END
+          Cb     
+db         `8b   
+VP           8b  
+   C8888D    88D 
+db           8P  
+VP         .8P   
+          CP     
+END;
+
+    echo '<pre>' . $smile . '</pre>';
 
 }
 
