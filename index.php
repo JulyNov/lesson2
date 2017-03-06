@@ -231,13 +231,14 @@ function Packets ($RX){
 
     preg_match('/packets:(\d+)/', $RX, $match);
     if ($match > 1000){
-        echo 'Сеть есть';
+        echo 'Сеть есть <hr>';
     }
-
+    else
+        echo 'Сети нет';
 }
 
 function Smail (){
-    echo '&#128513;';
+    echo '&#128513; <hr>';
 
 }
 
