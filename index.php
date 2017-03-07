@@ -223,21 +223,23 @@ echo str_replace('Две', $count, $Limonad) . '<hr>';
 
 $RX = 'RX packets:93048 errors:0 dropped:0 overruns:0 frame:.';
 
-function Packets ($RX){
-    if (preg_match('/:\\)/', $RX, $match)){
-        Smail ();
+function Packets($RX)
+{
+    if (preg_match('/:\\)/', $RX, $match)) {
+        Smail();
         return;
     }
 
     preg_match('/packets:(\d+)/', $RX, $match);
-      if ($match[1] > 1000){
-        echo   'Сеть есть <hr>';
-    }
-    else
+    if ($match[1] > 1000) {
+        echo 'Сеть есть <hr>';
+    } else {
         echo 'Сети нет';
+    }
 }
 
-function Smail (){
+function Smail()
+{
     $smile = <<< END
           Cb     
 db         `8b   
@@ -261,7 +263,8 @@ Packets($RX);
 //Напишите функцию, которая будет принимать имя файла, открывать файл и выводить содержимое на экран.
 
 $filename = 'test.txt';
-function FilePrint ($filename){
+function FilePrint($filename)
+{
     echo file_get_contents($filename) . '<hr>';
 
 }
