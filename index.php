@@ -274,3 +274,7 @@ FilePrint($filename);
 //Создайте файл anothertest.txt средствами PHP. Поместите в него текст - “Hello again!”
 
 
+$file = 'anothertest.txt';
+$current = 'Hello again!';
+file_put_contents($file, $current);
+
