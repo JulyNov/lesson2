@@ -38,7 +38,7 @@ echo '<hr>';
 
 $NumberArr = [1, 2, 1, 4, 5, 6];
 $operation = '/';
-
+// если $operation будет true то ошибку не выдаст ((
 function Calc(array $numbers, $operation)
 {
 
@@ -172,18 +172,24 @@ try {
 //Функция №2 выводит сообщение в котором на русском языке оговаривается результат из функции №1*/
 
 $str = 'Мат и тут и там';
-
+// функция работает не верно
 function Palindrom($str)
 {
     $str = strtolower($str);
+
     $str = preg_replace('/\W/', '', $str);
+    // здесь $str == ""
     $strR = strrev($str);
+    // здесь $strR == ""
+    // соответсвенно это равно друг другу "" === ""
+    // поэтому любая кириллица будет палиндромом
+    // необходимо исправить использую мультибайтовые функции
     return $str === $strR;
 }
 
 $flag = Palindrom($str);
 
-function PalindromEcho(bool $flag, $str)
+function PalindromEcho(bool $flag, $str) // а почему здес не указала тип ?
 {
     if ($flag === true) {
         echo $str . '<br> Это полиндром <hr>';
