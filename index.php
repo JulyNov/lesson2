@@ -36,42 +36,41 @@ echo '<hr>';
 //Функция должна обрабатывать любой ввод, в том числе некорректный и выдавать сообщения об этом
 
 
-$NumberArr = [1, 2, 1, 4, 5, 6];
+$NumberArr = [1, 2, 3, 4, 5, 6];
 $operation = '/';
 // если $operation будет true то ошибку не выдаст ((
 function Calc(array $numbers, $operation)
 {
 
-    echo implode($operation, $numbers) . '=';
     $sum = $numbers[0];
-
     $i = 0;
     foreach ($numbers as $value) {
         $i++;
         if (!is_numeric($value)) {
             throw new ErrorException('Неккоректное число');
         }
+
         if ($i === 1) {
             continue;
         }
-        switch ($operation) {
-            case '+':
-                $sum += $value;
-                break;
-            case '-':
-                $sum -= $value;
-                break;
-            case '*':
-                $sum *= $value;
-                break;
-            case '/':
-                $sum /= $value;
-                break;
-            default:
-                throw new ErrorException('Неверная арифметическая операция');
 
+        if ($operation === '+') {
+            $sum += $value;
+        }
+    elseif ($operation === '-') {
+            $sum -= $value;
+        }
+    elseif ($operation === '*') {
+            $sum *= $value;
+        }
+    elseif ($operation === '/') {
+            $sum /= $value;
+        }
+    else {
+            throw new ErrorException('Неверная арифметическая операция');
         }
     }
+    echo implode($operation, $numbers) . '=';
     echo $sum;
 }
 
@@ -101,21 +100,20 @@ function calcEverything($operation)
         if (!is_numeric($value)) {
             throw new ErrorException('Неккоректное число');
         }
-        switch ($operation) {
-            case '+':
-                $sum += $value;
-                break;
-            case '-':
-                $sum -= $value;
-                break;
-            case '*':
-                $sum *= $value;
-                break;
-            case '/':
-                $sum /= $value;
-                break;
-            default:
-                throw new ErrorException('Неверная арифметическая операция');
+        if ($operation === '+') {
+            $sum += $value;
+        }
+        elseif ($operation === '-') {
+            $sum -= $value;
+        }
+        elseif ($operation === '*') {
+            $sum *= $value;
+        }
+        elseif ($operation === '/') {
+            $sum /= $value;
+        }
+        else {
+            throw new ErrorException('Неверная арифметическая операция');
         }
 
     }
@@ -175,11 +173,16 @@ $str = 'Мат и тут и там';
 // функция работает не верно
 function Palindrom($str)
 {
-    $str = strtolower($str);
+    $str = mb_strtolower($str);
+    $str = preg_replace('/\W/u', '', $str);
 
-    $str = preg_replace('/\W/', '', $str);
-    // здесь $str == ""
-    $strR = strrev($str);
+    function utf8_strrev($str){
+        preg_match_all('/./us', $str, $ar);
+        return implode('', array_reverse($ar[0]));
+    }
+
+    $strR = utf8_strrev($str) ;
+
     // здесь $strR == ""
     // соответсвенно это равно друг другу "" === ""
     // поэтому любая кириллица будет палиндромом
